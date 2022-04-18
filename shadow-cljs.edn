@@ -1,0 +1,27 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies
+ [[reagent "1.1.1"]]
+
+ :dev-http {8020 "public"}; starts a http dev server on http://localhost:8020 and serves `public`
+
+
+ :builds
+ {:app ; build identifier
+  {:target :browser
+   :output-dir "public/js"
+   :asset-path "/js"
+
+   :modules
+   {:main {:init-fn de.mobe.main/main!}}
+   :devtools {:after-load main/reload!
+              :http-root "public"
+              :http-port 8020}
+
+  }
+ }
+}
